@@ -9,12 +9,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router'
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component'
 
 const routes = [
-  { path: 'register', component: RegistrationComponent},
-  { path: '**', component: RegistrationComponent}
+  { path: 'register', component: RegistrationComponent}, ///define path routes with router
+  { path: '**', component: RegistrationComponent},
+  { path: 'login', component: LoginComponent}
 ]
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ const routes = [
     MatButtonModule, //add button module
     MatFormFieldModule,
     MatInputModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [
     AuthService
