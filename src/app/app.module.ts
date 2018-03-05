@@ -9,7 +9,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router'
-import { HttpModule } from '@angular/http'
+import { HttpModule } from '@angular/http';
+import { LoginComponent } from './components/login/login.component'
 
 const routes = [
   { path: 'register', component: RegistrationComponent},
@@ -19,7 +20,8 @@ const routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
