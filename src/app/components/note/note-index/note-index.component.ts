@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class NoteIndexComponent implements OnInit {
 
-  columnNames = ['details', 'NoteId', 'Title', 'IsStarred', 'CreatedUtc', 'button']
+  columnNames = ['details', 'NoteId', 'Title', 'IsStarred', 'CreatedUtc', 'buttons']
   dataSource: MatTableDataSource<Note>
 
   constructor(private _noteService: NotesService) { }

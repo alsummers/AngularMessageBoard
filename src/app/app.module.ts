@@ -13,12 +13,23 @@ import { RouterModule } from '@angular/router'
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { NoteIndexComponent } from './components/note/note-index/note-index.component'
+import { NoteCreateComponent } from './components/note/note-create/note-create.component';
+import { NoteDetailsComponent } from './components/note-detail/note-detail.component';
+import { NoteEditComponent } from './components/note/note-edit/note-edit.component';
+import { NoteDeleteComponent } from './components/note/note-delete/note-delete.component'
+import { AuthGuard } from './guards/auth.guard'
 
 const routes = [
-  { path: 'register', component: RegistrationComponent}, ///define path routes with router
-  { path: '**', component: RegistrationComponent},
+  { path: 'Register', component: RegistrationComponent}, ///define path routes with router
   { path: 'login', component: LoginComponent},
-  { path: 'notes', component: NoteIndexComponent}
+  { path: 'notes', canActivate: [AuthGuard], children: [
+    { path: '', component: NoteIndexComponent },
+    { path: 'create', component: NoteCreateComponent },
+    { path: 'detail/:id', component: NoteDetailsComponent },
+    { path: 'edit/:id', component: NoteEditComponent},
+    { path: 'delete/:id', component: NoteDeleteComponent}
+]},
+  { path: '**', component: RegistrationComponent},
 ]
 @NgModule({
   declarations: [
@@ -26,7 +37,11 @@ const routes = [
     HeaderComponent,
     RegistrationComponent,
     LoginComponent,
-    NoteIndexComponent
+    NoteIndexComponent,
+    NoteDetailsComponent,
+    NoteCreateComponent,
+    NoteEditComponent,
+    NoteDeleteComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,13 +51,15 @@ const routes = [
     ReactiveFormsModule,
     MatToolbarModule, ///add material module
     MatButtonModule, //add button module
+    MatTableModule,
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule
   ],
   providers: [
     AuthService,
-    NotesService
+    NotesService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

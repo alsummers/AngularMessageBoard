@@ -17,7 +17,7 @@ export class AuthService {
   constructor(private _http: HttpClient, private _router: Router) { }
 
   register(regUserData: RegisterUser) {
-    return this._http.post(`${Api_Url}/api/Register`, regUserData)
+    return this._http.post(`${Api_Url}/api/Account/Register`, regUserData)
 
   }
 
@@ -28,7 +28,7 @@ export class AuthService {
     return this._http.post(`${Api_Url}/Token`, str).subscribe( (token: Token) => {
       localStorage.setItem('id_token', token.access_token);
       this.isLoggedIn.next(true)
-      this._router.navigate(['/'])
+      this._router.navigate(['/notes'])
     })
   }
 
